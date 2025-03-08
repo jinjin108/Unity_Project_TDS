@@ -837,7 +837,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   SetEnemyPosition: {fileID: 114753987}
-  TargetPosition: {fileID: 0}
+  TargetPosition: {fileID: 373551744}
   PoolSize: 10
 --- !u!4 &827946355
 Transform:

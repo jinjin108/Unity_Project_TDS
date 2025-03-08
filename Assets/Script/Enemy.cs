@@ -7,10 +7,10 @@ public class Enemy : MonoBehaviour
     Vector3 TargetPosition;
     float speed = 2f;
 
-    public void StartMove(Vector3 startPos, Vector3 targetPos)
+    public void StartMove(Vector3 startPos)
     {
         transform.position = startPos;
-        TargetPosition = targetPos;
+        TargetPosition = ObjectManager.Instance.TargetPosition.position;
         StartCoroutine(MoveToTarget());
     }
 

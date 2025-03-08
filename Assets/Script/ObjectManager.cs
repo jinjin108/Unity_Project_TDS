@@ -6,14 +6,15 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 public class ObjectManager : MonoBehaviour
 {
- [SerializeField]
+    public static ObjectManager Instance { get; private set; }
+    [SerializeField]
     AssetReferenceGameObject EnemyObj;
 
     [SerializeField]
     Transform SetEnemyPosition;
 
     [SerializeField]
-    Transform TargetPosition;
+    public Transform TargetPosition;
 
     [SerializeField] int PoolSize = 10;
 
@@ -22,7 +23,17 @@ public class ObjectManager : MonoBehaviour
     float spawnCooldown = 3f;
     float lastSpawnTime = 0f;
     int loadedCount = 0;
-
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
     void Start()
     {
         InitObject();
@@ -65,7 +76,7 @@ public class ObjectManager : MonoBehaviour
         if (randomEnemy != null)
         {
             randomEnemy.gameObject.SetActive(true);
-            randomEnemy.StartMove(SetEnemyPosition.position, TargetPosition.position);
+            randomEnemy.StartMove(SetEnemyPosition.position);
         }
     }
 
