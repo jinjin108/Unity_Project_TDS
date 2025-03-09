@@ -90,4 +90,10 @@ public class ObjectManager : MonoBehaviour
             }
         }
         return null;
-    }}
+    }
+    public void ReturnToPool(Enemy enemy)
+    {
+        enemy.StopAllCoroutines();
+        enemy.gameObject.SetActive(false);
+    }
+}

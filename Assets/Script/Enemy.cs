@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -23,9 +24,4 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void ReturnToPool()
-    {
-        StopAllCoroutines();
-        gameObject.SetActive(false);
-    }
 }
