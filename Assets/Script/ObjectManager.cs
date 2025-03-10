@@ -11,7 +11,9 @@ public class ObjectManager : MonoBehaviour
     AssetReferenceGameObject EnemyObj;
 
     [SerializeField]
-    Transform SetEnemyPosition;
+    Transform SetEnemyPosition1;
+    [SerializeField]
+    Transform SetEnemyPosition2;
 
     [SerializeField]
     public Transform TargetPosition;
@@ -52,7 +54,7 @@ public class ObjectManager : MonoBehaviour
     {
         for (int i = 0; i < PoolSize; i++)
         {
-            EnemyObj.InstantiateAsync(SetEnemyPosition).Completed += obj =>
+            EnemyObj.InstantiateAsync(SetEnemyPosition1).Completed += obj =>
             {
                 if (obj.Status == AsyncOperationStatus.Succeeded)
                 {
@@ -73,10 +75,23 @@ public class ObjectManager : MonoBehaviour
     void ActivateRandomEnemy()
     {
         Enemy randomEnemy = GetRandomInactiveEnemy();
+
         if (randomEnemy != null)
         {
+            Transform spawnPosition;
+            if (Random.Range(0, 2) == 0)
+            {
+                spawnPosition = SetEnemyPosition1;
+                randomEnemy.gameObject.layer = LayerMask.NameToLayer("Enemy1");
+            }
+            else
+            {
+                spawnPosition = SetEnemyPosition2;
+                randomEnemy.gameObject.layer = LayerMask.NameToLayer("Enemy2");
+            }
+
             randomEnemy.gameObject.SetActive(true);
-            randomEnemy.StartMove(SetEnemyPosition.position);
+            randomEnemy.StartMove(spawnPosition.position);
         }
     }
 

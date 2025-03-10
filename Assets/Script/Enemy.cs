@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0;
     }
     public void StartMove(Vector3 startPos)
     {
@@ -29,8 +28,5 @@ public class Enemy : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, TargetPosition, speed * Time.deltaTime);
             yield return null;
         }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
     }
 }
