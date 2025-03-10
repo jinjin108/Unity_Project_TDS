@@ -752,6 +752,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8091790207286016882, guid: e48e7c461a85c463cba5a999afb91a67, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8091790207286016882, guid: e48e7c461a85c463cba5a999afb91a67, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8091790207286016882, guid: e48e7c461a85c463cba5a999afb91a67, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8091790207286016882, guid: e48e7c461a85c463cba5a999afb91a67, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 319310827380095937, guid: e48e7c461a85c463cba5a999afb91a67, type: 3}
       propertyPath: m_Name
       value: ZombieMelee
