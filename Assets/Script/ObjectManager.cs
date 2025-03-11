@@ -15,6 +15,8 @@ public class ObjectManager : MonoBehaviour
     Transform m_SetEnemyPosition1;
     [SerializeField]
     Transform m_SetEnemyPosition2;
+    [SerializeField]
+    GameObject m_Enemys;
 
     [SerializeField]
     public Transform TargetPosition;
@@ -23,10 +25,10 @@ public class ObjectManager : MonoBehaviour
 
     List<Enemy> m_EnemyList = new List<Enemy>();
 
-    float m_SpawnCooldown = 3f;
+    float m_SpawnCooldown = 1f;
     float m_LastSpawnTime = 0f;
     int m_LoadedCount = 0;
-    private void Awake()
+    void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -55,7 +57,7 @@ public class ObjectManager : MonoBehaviour
     {
         for (int i = 0; i < m_PoolSize; i++)
         {
-            m_EnemyObj.InstantiateAsync(m_SetEnemyPosition1).Completed += obj =>
+            m_EnemyObj.InstantiateAsync(m_Enemys.transform).Completed += obj =>
             {
                 if (obj.Status == AsyncOperationStatus.Succeeded)
                 {
@@ -64,10 +66,6 @@ public class ObjectManager : MonoBehaviour
                     enemyObj.SetActive(false);
                     m_EnemyList.Add(enemy);
                     m_LoadedCount++;
-                }
-                else
-                {
-                    Debug.LogError("Enemy 로딩 실패!");
                 }
             };
         }

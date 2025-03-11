@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(CapsuleCollider2D))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] float m_Speed = 2;
@@ -13,21 +13,22 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] LayerMask m_EnemyLayerMask;
 
-    private bool m_IsJumping = false;
-    private float m_JumpCooldown = 3f;
-    private float m_LastJumpTime = -3f;
+
+    bool m_IsJumping = false;
+    float m_JumpCooldown = 3f;
+    float m_LastJumpTime = -3f;
     CapsuleCollider2D m_Cl;
-    private Rigidbody2D m_Rb;
+    Rigidbody2D m_Rb;
 
     Vector3 m_TargetPosition;
 
-    private void Awake()
+    void Awake()
     {
         m_Rb = GetComponent<Rigidbody2D>();
         m_Cl = GetComponent<CapsuleCollider2D>();
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
         m_EnemyLayerMask = LayerMask.GetMask(LayerMask.LayerToName(gameObject.layer));
     }
@@ -69,7 +70,7 @@ public class Enemy : MonoBehaviour
         m_LastJumpTime = Time.time;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == gameObject.layer)
         {
