@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Rendering;
 using UnityEngine.ResourceManagement.AsyncOperations;
 public class ObjectManager : MonoBehaviour
 {
@@ -78,22 +79,31 @@ public class ObjectManager : MonoBehaviour
         if (randomEnemy != null)
         {
             Transform spawnPosition;
+            int sortingOrder;
+
             if (Random.Range(0, 2) == 0)
             {
                 spawnPosition = m_SetEnemyPosition1;
                 randomEnemy.gameObject.layer = LayerMask.NameToLayer("Enemy1");
+                sortingOrder = 5;
             }
             else
             {
                 spawnPosition = m_SetEnemyPosition2;
                 randomEnemy.gameObject.layer = LayerMask.NameToLayer("Enemy2");
+                sortingOrder = 0;
+            }
+
+            SortingGroup sortingGroup = randomEnemy.GetComponent<SortingGroup>();
+            if (sortingGroup != null)
+            {
+                sortingGroup.sortingOrder = sortingOrder;
             }
 
             randomEnemy.gameObject.SetActive(true);
             randomEnemy.StartMove(spawnPosition.position);
         }
     }
-
     Enemy GetRandomInactiveEnemy()
     {
         foreach (var enemy in m_EnemyList)
