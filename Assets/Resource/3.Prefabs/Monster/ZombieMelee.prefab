@@ -68,6 +68,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64598152c3d54674490b96cc41a71741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_JumpForce: 4.5
+  m_DetectDistance: 0.5
+  m_EnemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!61 &-8091790207286016882
 BoxCollider2D:
   m_ObjectHideFlags: 0
