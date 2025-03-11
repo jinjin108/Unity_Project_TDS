@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     private bool m_IsJumping = false;
     private float m_JumpCooldown = 3f;
     private float m_LastJumpTime = -3f;
-    BoxCollider2D m_Cl;
+    CapsuleCollider2D m_Cl;
     private Rigidbody2D m_Rb;
 
     Vector3 m_TargetPosition;
@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         m_Rb = GetComponent<Rigidbody2D>();
-        m_Cl = GetComponent<BoxCollider2D>();
+        m_Cl = GetComponent<CapsuleCollider2D>();
     }
 
     private void OnEnable()
